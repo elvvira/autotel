@@ -3,11 +3,14 @@ import { COLORS } from '../../constants/colors';
 
 const ContainerSearch = styled.form`
 	width: 100%;
+	height: 60px;
 	padding: 1rem;
 	border-radius: 2rem;
 	border: 1px solid ${COLORS.dark};
 	display: flex;
+	align-items: center;
 	gap: 1rem;
+	justify-content: space-between;
 `;
 
 const StyledSearch = styled.div`
@@ -23,10 +26,11 @@ const StyledSearch = styled.div`
 		top: -6px;
 	}
 `;
+
 const StyledInput = styled.input`
 	border: transparent;
 `;
 const ImgSearch = styled.img`
-	width: 60%;
+	/* background-color: red; */
 `;
 export { ContainerSearch, ImgSearch, StyledSearch, StyledInput };

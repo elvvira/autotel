@@ -5,7 +5,6 @@ import { ContainerHome } from './styles';
 const Home = () => {
 	return (
 		<ContainerHome>
-			<Header />
 			<Search />
 		</ContainerHome>
 	);

@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { COLORS } from '../../constants/colors';
 
 const ContainerHeader = styled.div`
-	width: 100%;
+	width: 85%;
+	margin-right: auto;
+	margin-left: auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	padding-top: 2rem;
 	margin-bottom: 2rem;
 `;
 
