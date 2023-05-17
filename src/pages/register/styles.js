@@ -3,7 +3,6 @@ import { COLORS } from '../../constants/colors';
 
 const ContainerRegister = styled.div`
 	width: 60%;
-	height: 420px;
 	margin-right: auto;
 	margin-left: auto;
 	border-radius: 2rem;

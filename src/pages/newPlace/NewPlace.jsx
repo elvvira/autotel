@@ -2,7 +2,11 @@ import {
 	ButtonImage,
 	ContainerImage,
 	ContainerImages,
-	ContainerNewPlace
+	ContainerInput,
+	ContainerNewPlace,
+	FormInformation,
+	InputInfoPlace,
+	StyledInputPlace
 } from './styles';
 
 const NewPlace = () => {
@@ -25,9 +29,43 @@ const NewPlace = () => {
 			</ContainerImages>
 
 			<div>
-				<form action=''>
-					<input type='text' name='' id='' />
-				</form>
+				<FormInformation>
+					<div>
+						<ContainerInput>
+							<label htmlFor=''>¿Donde se encuentra tu plaza?</label>
+							<StyledInputPlace
+								type='text'
+								name=''
+								id=''
+								placeholder='ubicación...'
+							/>
+						</ContainerInput>
+						<ContainerInput>
+							<label htmlFor=''>¿Donde se encuentra tu plaza?</label>
+							<StyledInputPlace
+								type='text'
+								name=''
+								id=''
+								placeholder='moto, biplaza, furgoneta....'
+							/>
+						</ContainerInput>
+						<ContainerInput>
+							<label htmlFor=''>¿Que tamaño tiene tu plaza?</label>
+							<StyledInputPlace type='text' name='' id='' placeholder='m2...' />
+						</ContainerInput>
+					</div>
+					<div>
+						<ContainerInput>
+							<label htmlFor=''>Información sobre tú plaza</label>
+							<InputInfoPlace
+								type='text'
+								name=''
+								id=''
+								placeholder='Lorem ipsum dolor sit amet...'
+							/>
+						</ContainerInput>
+					</div>
+				</FormInformation>
 			</div>
 		</ContainerNewPlace>
 	);

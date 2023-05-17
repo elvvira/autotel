@@ -4,6 +4,9 @@ const ContainerNewPlace = styled.div`
 	width: 85%;
 	margin-right: auto;
 	margin-left: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 `;
 const ContainerImages = styled.div`
 	display: flex;
@@ -16,7 +19,7 @@ const ContainerImages = styled.div`
 		width: 100%;
 		height: 1px;
 		background-color: ${COLORS.dark};
-		bottom: -20px;
+		bottom: -10px;
 	}
 `;
 const ContainerImage = styled.div`
@@ -37,6 +40,36 @@ const ButtonImage = styled.button`
 	left: 50%;
 	transform: translateX(-50%);
 	bottom: 40%;
-	/* transform: translateY(-50%); */
 `;
-export { ContainerNewPlace, ContainerImages, ContainerImage, ButtonImage };
+const FormInformation = styled.form`
+	display: grid;
+	grid-template-columns: repeat(2, 57% 40%);
+`;
+
+const ContainerInput = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-bottom: 1rem;
+`;
+const StyledInputPlace = styled.input`
+	width: 380px;
+	height: 40px;
+	padding-left: 1rem;
+	border-radius: 2rem;
+	border: 1px solid black;
+`;
+const InputInfoPlace = styled(StyledInputPlace)`
+	width: 320px;
+	height: 220px;
+`;
+export {
+	ContainerNewPlace,
+	ContainerImages,
+	ContainerImage,
+	ButtonImage,
+	ContainerInput,
+	FormInformation,
+	StyledInputPlace,
+	InputInfoPlace
+};

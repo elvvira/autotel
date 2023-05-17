@@ -27,4 +27,8 @@ const ImgLogo = styled.img`
 const ImgUser = styled.img`
 	width: 20px;
 `;
-export { ContainerHeader, ImgLogo, ImgUser, ContainerUser };
+const ContainerMenu = styled.div`
+	display: flex;
+	gap: 0.3rem;
+`;
+export { ContainerMenu, ContainerHeader, ImgLogo, ImgUser, ContainerUser };

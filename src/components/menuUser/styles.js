@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { COLORS } from '../../constants/colors';
 
 const MenuContainer = styled.div`
-	width: 400px;
 	height: 40px;
 	border-radius: 2rem;
 	background-color: ${COLORS.primary};
+	padding: 0 2rem 0 2rem;
 `;
 const StyledUl = styled.ul`
 	color: white;

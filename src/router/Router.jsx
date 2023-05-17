@@ -4,6 +4,7 @@ import Register from '../pages/register/Register';
 import Home from '../components/home/Home';
 import Login from '../pages/login/Login';
 import NewPlace from '../pages/newPlace/NewPlace';
+import Profile from '../pages/profile/Profile';
 
 const Router = () => {
 	return (
@@ -13,6 +14,7 @@ const Router = () => {
 				<Route path='/Register' element={<Register />}></Route>
 				<Route path='/Login' element={<Login />}></Route>
 				<Route path='/NewPlace' element={<NewPlace />}></Route>
+				<Route path='/Profile' element={<Profile />}></Route>
 			</Route>
 		</Routes>
 	);
