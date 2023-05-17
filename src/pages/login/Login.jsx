@@ -25,7 +25,6 @@ const Login = () => {
 					<StyledInput
 						type='text'
 						name=''
-						id=''
 						placeholder='email'
 						onChange={e =>
 							setLoginInfo({
@@ -39,7 +38,6 @@ const Login = () => {
 					<StyledInput
 						type='password'
 						name=''
-						id=''
 						placeholder='contraseña'
 						onChange={e =>
 							setLoginInfo({

@@ -61,7 +61,7 @@ const StyledInputPlace = styled.input`
 `;
 const InputInfoPlace = styled(StyledInputPlace)`
 	width: 320px;
-	height: 220px;
+	height: 310px;
 `;
 export {
 	ContainerNewPlace,

@@ -18,14 +18,6 @@ const NewPlace = () => {
 					<ButtonImage>+</ButtonImage>
 					<img src='' alt='' />
 				</ContainerImage>
-				<ContainerImage>
-					<ButtonImage>+</ButtonImage>
-					<img src='' alt='' />
-				</ContainerImage>
-				<ContainerImage>
-					<ButtonImage>+</ButtonImage>
-					<img src='' alt='' />
-				</ContainerImage>
 			</ContainerImages>
 
 			<div>
@@ -52,6 +44,10 @@ const NewPlace = () => {
 						<ContainerInput>
 							<label htmlFor=''>¿Que tamaño tiene tu plaza?</label>
 							<StyledInputPlace type='text' name='' id='' placeholder='m2...' />
+						</ContainerInput>
+						<ContainerInput>
+							<label htmlFor=''>¿Que precio tiene tu plaza?</label>
+							<StyledInputPlace type='text' name='' id='' placeholder='$/día' />
 						</ContainerInput>
 					</div>
 					<div>

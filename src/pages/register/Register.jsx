@@ -16,39 +16,21 @@ import { AuthContext } from '../../contexts/Auth.context';
 
 const Register = () => {
 	const navigate = useNavigate();
-	const { currentUser } = useContext(AuthContext);
 
 	const [registerInfo, setRegisterInfo] = useState({
-		name: '',
 		email: '',
 		password: '',
 		confrimPassword: ''
 	});
-	console.log(currentUser);
 	return (
 		<ContainerRegister>
 			<StyledRegisterTitle>Regístrate</StyledRegisterTitle>
 			<CloseRegister onClick={() => navigate('/')}>x</CloseRegister>
-			<StyledForm onSubmit={e => handleSubmit(e, registerInfo)}>
+			<StyledForm onSubmit={e => handleSubmit(e, registerInfo, navigate)}>
 				<div>
 					<StyledInput
-						type='text'
+						type='email'
 						name=''
-						id=''
-						placeholder='user name'
-						onChange={e =>
-							setRegisterInfo({
-								...registerInfo,
-								name: e.target.value
-							})
-						}
-					/>
-				</div>
-				<div>
-					<StyledInput
-						type='text'
-						name=''
-						id=''
 						placeholder='email'
 						onChange={e =>
 							setRegisterInfo({
@@ -60,9 +42,8 @@ const Register = () => {
 				</div>
 				<div>
 					<StyledInput
-						type='text'
+						type='password'
 						name=''
-						id=''
 						placeholder='contraseña'
 						onChange={e =>
 							setRegisterInfo({
@@ -72,7 +53,7 @@ const Register = () => {
 						}
 					/>
 				</div>
-				<ButtonRegister>Contínua</ButtonRegister>
+				<ButtonRegister>Continúa</ButtonRegister>
 			</StyledForm>
 			<StyledBefore>o</StyledBefore>
 
@@ -81,12 +62,12 @@ const Register = () => {
 		</ContainerRegister>
 	);
 };
-const handleSubmit = async (e, registerInfo) => {
+const handleSubmit = async (e, registerInfo, navigate) => {
 	e.preventDefault();
-	const { name, email, password } = registerInfo;
-
+	const { email, password } = registerInfo;
 	try {
-		await createUserWithEmailAndPassword(auth, name, email, password);
+		await createUserWithEmailAndPassword(auth, email, password);
+		navigate('/');
 	} catch (err) {
 		console.log(err);
 	}

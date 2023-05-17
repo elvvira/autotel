@@ -3,21 +3,29 @@ import { auth } from '../../config/firebase.config';
 import { signOut } from 'firebase/auth';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth.context';
+import { ContainerProfile } from './styles';
 
 const Profile = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 
 	return (
-		<div>
-			<p>
-				{' '}
-				¿seguro que quieres cerrar seseión <br /> en {currentUser.email}?
-			</p>
+		<ContainerProfile>
 			<div>
-				<button onClick={() => handleSignOut(navigate)}>cerrar sesion</button>
+				<div>
+					<label htmlFor=''>nombre de usuari@</label>
+					<input type='text' />
+				</div>
 			</div>
-		</div>
+			<div>
+				<p>
+					¿seguro que quieres cerrar sesión <br /> en {currentUser.email}?
+				</p>
+				<div>
+					<button onClick={() => handleSignOut(navigate)}>cerrar sesion</button>
+				</div>
+			</div>
+		</ContainerProfile>
 	);
 };
 

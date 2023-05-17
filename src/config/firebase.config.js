@@ -8,12 +8,13 @@ import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: 'AIzaSyD12yMOrmIGUvPe003RI7GBQfv76-WrlDg',
-	authDomain: 'fir-blog-42f2d.firebaseapp.com',
-	projectId: 'fir-blog-42f2d',
-	storageBucket: 'fir-blog-42f2d.appspot.com',
-	messagingSenderId: '529565330080',
-	appId: '1:529565330080:web:3d2eab97d5400999e2b7c5'
+	apiKey: 'AIzaSyC81rxk4wromPhkid8HbuU-7LO5kzQ93CY',
+	authDomain: 'autotel-e0a86.firebaseapp.com',
+	projectId: 'autotel-e0a86',
+	storageBucket: 'autotel-e0a86.appspot.com',
+	messagingSenderId: '412412841285',
+	appId: '1:412412841285:web:d38f8047bdf7b2848e422c',
+	measurementId: 'G-ELK9T42T5X'
 };
 
 // Initialize Firebase

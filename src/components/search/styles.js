@@ -11,6 +11,7 @@ const ContainerSearch = styled.form`
 	align-items: center;
 	gap: 1rem;
 	justify-content: space-between;
+	margin-bottom: 2rem;
 `;
 
 const StyledSearch = styled.div`
@@ -31,6 +32,6 @@ const StyledInput = styled.input`
 	border: transparent;
 `;
 const ImgSearch = styled.img`
-	/* background-color: red; */
+	width: 20px;
 `;
 export { ContainerSearch, ImgSearch, StyledSearch, StyledInput };
