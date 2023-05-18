@@ -6,11 +6,5 @@ const ContainerHome = styled.div`
 	margin-left: auto;
 	padding-top: 2rem;
 `;
-const ImagePost = styled.img`
-	width: 200px;
-	height: 200px;
-	border-radius: 2rem;
-	background-color: gray;
-`;
 
-export { ContainerHome, ImagePost };
+export { ContainerHome };

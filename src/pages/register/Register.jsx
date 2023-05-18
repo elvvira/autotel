@@ -9,48 +9,56 @@ import {
 	StyledInput,
 	StyledRegisterTitle
 } from './styles';
-import { useContext, useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+	signInWithPopup
+} from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
-import { AuthContext } from '../../contexts/Auth.context';
-
+import { useForm } from 'react-hook-form';
+import { FORM_VALIDATIONS } from '../../constants/validations';
 const Register = () => {
 	const navigate = useNavigate();
 
-	const [registerInfo, setRegisterInfo] = useState({
-		email: '',
-		password: '',
-		confrimPassword: ''
-	});
+	const {
+		handleSubmit,
+		register,
+		formState: { errors }
+	} = useForm({ mode: 'onBlur' });
 	return (
 		<ContainerRegister>
 			<StyledRegisterTitle>Regístrate</StyledRegisterTitle>
 			<CloseRegister onClick={() => navigate('/')}>x</CloseRegister>
-			<StyledForm onSubmit={e => handleSubmit(e, registerInfo, navigate)}>
+			<StyledForm
+				onSubmit={handleSubmit((data, e) => onSubmit(data, e, navigate))}
+			>
 				<div>
 					<StyledInput
-						type='email'
-						name=''
+						type='text'
+						name='email'
+						{...register('email', {
+							required: FORM_VALIDATIONS['email'].require,
+							pattern: {
+								value: FORM_VALIDATIONS['email'].pattern,
+								message: FORM_VALIDATIONS['email'].message
+							}
+						})}
 						placeholder='email'
-						onChange={e =>
-							setRegisterInfo({
-								...registerInfo,
-								email: e.target.value
-							})
-						}
 					/>
+					{errors.email && <p>{errors.email.message}</p>}
 				</div>
 				<div>
 					<StyledInput
 						type='password'
-						name=''
+						name='password'
 						placeholder='contraseña'
-						onChange={e =>
-							setRegisterInfo({
-								...registerInfo,
-								password: e.target.value
-							})
-						}
+						{...register('password', {
+							required: FORM_VALIDATIONS['password'].require,
+							pattern: {
+								value: FORM_VALIDATIONS['password'].pattern,
+								message: FORM_VALIDATIONS['password'].message
+							}
+						})}
 					/>
 				</div>
 				<ButtonRegister>Continúa</ButtonRegister>
@@ -58,13 +66,15 @@ const Register = () => {
 			<StyledBefore>o</StyledBefore>
 
 			<ButtonApps>Continua con Facebook</ButtonApps>
-			<ButtonApps onClick={loginWithGoogle}>Continua con Google</ButtonApps>
+			<ButtonApps onClick={() => loginWithGoogle(navigate)}>
+				Continua con Google
+			</ButtonApps>
 		</ContainerRegister>
 	);
 };
-const handleSubmit = async (e, registerInfo, navigate) => {
+const onSubmit = async (data, e, navigate) => {
 	e.preventDefault();
-	const { email, password } = registerInfo;
+	const { email, password } = data;
 	try {
 		await createUserWithEmailAndPassword(auth, email, password);
 		navigate('/');
@@ -74,14 +84,16 @@ const handleSubmit = async (e, registerInfo, navigate) => {
 	e.target.reset();
 };
 
-const loginWithGoogle = async () => {
+const loginWithGoogle = async navigate => {
 	const provider = new GoogleAuthProvider();
 	try {
 		const result = await signInWithPopup(auth, provider);
 		const credential = GoogleAuthProvider.credentialFromResult(result);
 		console.log(credential);
+		navigate('/');
 	} catch (err) {
 		console.log(err);
 	}
 };
+
 export default Register;
