@@ -6,5 +6,11 @@ const ContainerHome = styled.div`
 	margin-left: auto;
 	padding-top: 2rem;
 `;
-
-export { ContainerHome };
+const ContainerPlaces = styled.div`
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	gap: 2rem;
+	flex-wrap: wrap;
+`;
+export { ContainerHome, ContainerPlaces };

@@ -6,23 +6,49 @@ const ContainerNewPlace = styled.div`
 	margin-left: auto;
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: 1rem;
+`;
+const FormInformation = styled.form`
+	display: grid;
+	grid-template-columns: repeat(2, 55% 40%);
+	grid-template-rows: 300px 400px 200px;
+`;
+const StylesInputFile = styled.input`
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+`;
+const LabelFile = styled.label`
+	background-color: black;
+	border-radius: 2rem;
+	color: white;
+	width: 240px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 const ContainerImages = styled.div`
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	gap: 1rem;
 	position: relative;
+	grid-row: 1/2;
+	grid-column: 1/-1;
+
 	&::after {
 		content: '';
 		position: absolute;
-		width: 100%;
+		width: 50%;
 		height: 1px;
 		background-color: ${COLORS.dark};
-		bottom: -10px;
+		bottom: 30px;
 	}
 `;
-const ContainerImage = styled.div`
+const ContainerImage = styled.img`
 	width: 250px;
 	height: 200px;
 	border: 1px solid ${COLORS.dark};
@@ -41,10 +67,6 @@ const ButtonImage = styled.button`
 	transform: translateX(-50%);
 	bottom: 40%;
 `;
-const FormInformation = styled.form`
-	display: grid;
-	grid-template-columns: repeat(2, 57% 40%);
-`;
 
 const ContainerInput = styled.div`
 	display: flex;
@@ -58,10 +80,43 @@ const StyledInputPlace = styled.input`
 	padding-left: 1rem;
 	border-radius: 2rem;
 	border: 1px solid black;
+	&:hover {
+		border-color: ${COLORS.primary};
+	}
 `;
 const InputInfoPlace = styled(StyledInputPlace)`
 	width: 320px;
 	height: 310px;
+`;
+
+const InputInfoPrice = styled(StyledInputPlace)`
+	width: 280px;
+	margin-right: 1rem;
+`;
+const StyledSelect = styled.select`
+	width: 80px;
+	height: 40px;
+	border-radius: 1.5rem;
+	padding-left: 0.8rem;
+	border: 1px solid black;
+	&:hover {
+		border-color: ${COLORS.primary};
+	}
+`;
+const ButtonPlace = styled.button`
+	width: 250px;
+	height: 40px;
+	border-radius: 2rem;
+	grid-column: 1/3;
+	grid-row: 3/3;
+	background-color: black;
+	color: white;
+	margin-right: auto;
+	margin-left: auto;
+	&:hover {
+		width: 255px;
+		height: 45px;
+	}
 `;
 export {
 	ContainerNewPlace,
@@ -71,5 +126,10 @@ export {
 	ContainerInput,
 	FormInformation,
 	StyledInputPlace,
-	InputInfoPlace
+	InputInfoPlace,
+	InputInfoPrice,
+	StyledSelect,
+	ButtonPlace,
+	StylesInputFile,
+	LabelFile
 };
