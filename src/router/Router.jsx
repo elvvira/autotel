@@ -5,6 +5,7 @@ import Home from '../components/home/Home';
 import Login from '../pages/login/Login';
 import NewPlace from '../pages/newPlace/NewPlace';
 import Profile from '../pages/profile/Profile';
+import Modal from '../pages/modal/Modal';
 
 const Router = () => {
 	return (
@@ -15,6 +16,7 @@ const Router = () => {
 				<Route path='/Login' element={<Login />} />
 				<Route path='/NewPlace' element={<NewPlace />} />
 				<Route path='/Profile' element={<Profile />} />
+				<Route path='/Modal' element={<Modal />} />
 			</Route>
 		</Routes>
 	);

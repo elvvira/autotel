@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { ImagePost } from './styles';
 
 const Places = ({ post }) => {
+	const navigate = useNavigate();
+
 	return (
-		<div>
+		<div onClick={() => navigate('Modal')}>
 			<ImagePost src={post.img} alt='' />
 			<div>
 				<p>{post.location}</p>
