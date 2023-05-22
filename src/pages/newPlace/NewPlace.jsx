@@ -1,14 +1,13 @@
 import { useContext, useState } from 'react';
 import {
-	ButtonImage,
 	ButtonPlace,
 	ContainerImage,
 	ContainerImages,
 	ContainerInput,
 	ContainerNewPlace,
 	FormInformation,
+	InputInfoDuo,
 	InputInfoPlace,
-	InputInfoPrice,
 	LabelFile,
 	StyledInputPlace,
 	StyledSelect,
@@ -79,18 +78,28 @@ const NewPlace = () => {
 					</ContainerInput>
 					<ContainerInput>
 						<label htmlFor=''>¿Para que vehículo es tu plaza?</label>
-						<StyledInputPlace
-							type='text'
-							name=''
-							id=''
-							placeholder='moto, biplaza, furgoneta....'
-							onChange={e =>
-								setNewPlaceInfo({
-									...newPlaceInfo,
-									type: e.target.value
-								})
-							}
-						/>
+						<div>
+							<InputInfoDuo
+								type='text'
+								name=''
+								id=''
+								placeholder='moto, biplaza, furgoneta....'
+								onChange={e =>
+									setNewPlaceInfo({
+										...newPlaceInfo,
+										type: e.target.value
+									})
+								}
+							/>
+							<StyledSelect name='' id=''>
+								<option value=''>Automóvil pequeño</option>
+								<option value=''>Familiar</option>
+								<option value=''>Berlina</option>
+								<option value=''>Monovolumen</option>
+								<option value=''>Deportivos</option>
+								<option value=''>Furgonetas</option>
+							</StyledSelect>
+						</div>
 					</ContainerInput>
 					<ContainerInput>
 						<label htmlFor=''>¿Que tamaño tiene tu plaza?</label>
@@ -110,7 +119,7 @@ const NewPlace = () => {
 					<ContainerInput>
 						<label htmlFor=''>¿Que precio tiene tu plaza?</label>
 						<div>
-							<InputInfoPrice
+							<InputInfoDuo
 								type='text'
 								name=''
 								id=''

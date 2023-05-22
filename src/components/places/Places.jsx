@@ -5,7 +5,7 @@ const Places = ({ post }) => {
 	const navigate = useNavigate();
 
 	return (
-		<div onClick={() => navigate(`/modal/${post}`)}>
+		<div onClick={() => navigate(`Modal`, { state: post })}>
 			<ImagePost src={post.img} alt='' />
 			<div>
 				<p>{post.location}</p>

@@ -38,7 +38,6 @@ const ContainerImages = styled.div`
 	position: relative;
 	grid-row: 1/2;
 	grid-column: 1/-1;
-
 	&::after {
 		content: '';
 		position: absolute;
@@ -89,12 +88,12 @@ const InputInfoPlace = styled(StyledInputPlace)`
 	height: 310px;
 `;
 
-const InputInfoPrice = styled(StyledInputPlace)`
-	width: 280px;
+const InputInfoDuo = styled(StyledInputPlace)`
+	width: 250px;
 	margin-right: 1rem;
 `;
 const StyledSelect = styled.select`
-	width: 80px;
+	width: 110px;
 	height: 40px;
 	border-radius: 1.5rem;
 	padding-left: 0.8rem;
@@ -127,7 +126,7 @@ export {
 	FormInformation,
 	StyledInputPlace,
 	InputInfoPlace,
-	InputInfoPrice,
+	InputInfoDuo,
 	StyledSelect,
 	ButtonPlace,
 	StylesInputFile,

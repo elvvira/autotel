@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
 
     body{
     margin: 0;
-    font-family:"Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
+    font-family:"Arial Rounded ", Arial, Helvetica, sans-serif;
     }
     
     h2{

@@ -10,6 +10,9 @@ const MenuUser = ({ setShowInfoUser }) => {
 		<MenuContainer>
 			<nav>
 				<StyledUl>
+					<li>
+						<NavLink to='/'>Home</NavLink>
+					</li>
 					{currentUser ? (
 						<li>
 							<NavLink to='NewPlace' onClick={() => setShowInfoUser(false)}>
@@ -26,7 +29,7 @@ const MenuUser = ({ setShowInfoUser }) => {
 					{currentUser ? (
 						<li>
 							<NavLink to='Profile' onClick={() => setShowInfoUser(false)}>
-								Profile
+								Perfil
 							</NavLink>
 						</li>
 					) : (
