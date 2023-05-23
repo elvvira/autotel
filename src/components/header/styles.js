@@ -9,7 +9,6 @@ const ContainerHeader = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	padding-top: 2rem;
-	margin-bottom: 2rem;
 `;
 
 const ContainerUser = styled.div`

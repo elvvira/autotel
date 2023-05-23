@@ -10,6 +10,7 @@ const ContainerProfile = styled.div`
 	margin-right: auto;
 	margin-left: auto;
 	position: relative;
+	cursor: pointer;
 `;
 const ContainerNav = styled.nav`
 	width: 100%;
@@ -44,10 +45,14 @@ const ButtonClose = styled.button`
 	color: black;
 	border: transparent;
 `;
+const TitleMode = styled.p`
+	color: ${({ active }) => (active ? 'black' : 'white')};
+`;
 export {
 	ContainerProfile,
 	ContainerUlProfile,
 	ContainerNav,
 	ContainerCloseSesion,
-	ButtonClose
+	ButtonClose,
+	TitleMode
 };

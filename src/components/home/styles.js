@@ -7,10 +7,11 @@ const ContainerHome = styled.div`
 	padding-top: 2rem;
 `;
 const ContainerPlaces = styled.div`
+	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	flex-direction: row;
-	gap: 2rem;
+	gap: 1rem;
 	flex-wrap: wrap;
 `;
 export { ContainerHome, ContainerPlaces };

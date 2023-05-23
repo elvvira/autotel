@@ -4,6 +4,7 @@ import Search from '../search/Search';
 import { ContainerHome, ContainerPlaces } from './styles';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { blogCollectionReference } from '../../config/firebase.config';
+import Banner from '../banner/Banner';
 
 const Home = () => {
 	const [posts, setPosts] = useState([]);
@@ -17,10 +18,11 @@ const Home = () => {
 		});
 		return () => subscribeToData();
 	}, []);
-	console.log(posts);
+	// console.log(posts);
 
 	return (
 		<ContainerHome>
+			<Banner />
 			<Search />
 			<ContainerPlaces>
 				{posts.map(post => {

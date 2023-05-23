@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth, blogCollectionReference } from '../../config/firebase.config';
 import { signOut } from 'firebase/auth';
 import { useContext, useEffect, useState } from 'react';
@@ -8,53 +8,60 @@ import {
 	ContainerCloseSesion,
 	ContainerNav,
 	ContainerProfile,
-	ContainerUlProfile
+	ContainerUlProfile,
+	TitleMode
 } from './styles';
-import { doc, onSnapshot } from 'firebase/firestore';
+import YourPosts from '../../components/your-posts/YourPosts';
+import YourFav from '../../components/your-fav/YourFav';
+import YourProfile from '../../components/your-profile/YourProfile';
+import { onSnapshot } from 'firebase/firestore';
+import { TABS } from '../../constants/tabs';
 
 const Profile = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
-	// const [post, setPost] = useState([]);
-	// useEffect(() => {
-	// 	const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
-	// 		const dataInfo = snapshot.docs.map(doc => ({
-	// 			...doc.data(),
-	// 			id: doc.id
-	// 		}));
-	// 		dataInfo.length === 0 ? setPost(null) : setPost(dataInfo);
-	// 	});
-	// 	return () => subscribeToData();
-	// }, []);
+	const [mode, setMode] = useState('posts');
+	const [posts, setPosts] = useState([]);
+	useEffect(() => {
+		const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {
+			const dataInfo = snapshot.docs.map(doc => ({
+				...doc.data(),
+				id: doc.id
+			}));
+			dataInfo.length === 0 ? setPosts(null) : setPosts(dataInfo);
+		});
+		return () => subscribeToData();
+	}, []);
 
-	// console.log(currentUser.displayName);
+	if (!currentUser) return <h1>Loading...</h1>;
 
 	return (
 		<ContainerProfile>
 			<ContainerNav>
 				<ContainerUlProfile>
-					<li>
-						<NavLink>Tus anuncios</NavLink>
-					</li>
-					<li>
-						<NavLink>Tus favoritos</NavLink>
-					</li>
-					<li>
-						<NavLink>Perfil</NavLink>
-					</li>
+					{TABS.map(tab => {
+						return (
+							<li key={tab.id}>
+								<TitleMode
+									onClick={() => setMode(tab.mode)}
+									active={mode === tab.mode}
+								>
+									{tab.text}
+								</TitleMode>
+							</li>
+						);
+					})}
 				</ContainerUlProfile>
 			</ContainerNav>
+
 			<div>
-				<div>
-					<label htmlFor=''>nombre de usuari@</label>
-					<input type='text' />
-				</div>
+				{mode === 'posts' && <YourPosts posts={posts} mode={mode} />}
+				{mode === 'favs' && <YourFav />}
+				{mode === 'profile' && <YourProfile />}
 			</div>
-			<div></div>
+
 			<ContainerCloseSesion>
-				<p>
-					¿Deseas cerrar sesión <br /> {currentUser.displayName}?
-				</p>
+				<p>¿Deseas cerrar sesión {currentUser.email}?</p>
 
 				<ButtonClose onClick={() => handleSignOut(navigate)}>
 					cerrar sesión
