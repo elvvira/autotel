@@ -26,33 +26,8 @@ const ContainerUlProfile = styled.ul`
 	justify-content: space-between;
 	gap: 1rem;
 `;
-const ContainerCloseSesion = styled.div`
-	width: 120%;
-	height: 130px;
-	position: fixed;
-	left: -10%;
-	bottom: 0;
-	background-color: black;
-	color: white;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-`;
-const ButtonClose = styled.button`
-	background-color: white;
-	color: black;
-	border: transparent;
-`;
+
 const TitleMode = styled.p`
 	color: ${({ active }) => (active ? 'black' : 'white')};
 `;
-export {
-	ContainerProfile,
-	ContainerUlProfile,
-	ContainerNav,
-	ContainerCloseSesion,
-	ButtonClose,
-	TitleMode
-};
+export { ContainerProfile, ContainerUlProfile, ContainerNav, TitleMode };

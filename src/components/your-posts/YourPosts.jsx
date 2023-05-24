@@ -19,7 +19,7 @@ const YourPosts = () => {
 		<ContainerYourPosts>
 			{posts.map(post => {
 				return (
-					<div>
+					<div key={post.id}>
 						<YourPostImg src={post.img} alt='' />
 						<div>
 							<p>{post.location}</p>

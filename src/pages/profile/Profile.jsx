@@ -1,11 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { auth, blogCollectionReference } from '../../config/firebase.config';
-import { signOut } from 'firebase/auth';
+import { blogCollectionReference } from '../../config/firebase.config';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/Auth.context';
 import {
-	ButtonClose,
-	ContainerCloseSesion,
 	ContainerNav,
 	ContainerProfile,
 	ContainerUlProfile,
@@ -18,7 +14,6 @@ import { onSnapshot } from 'firebase/firestore';
 import { TABS } from '../../constants/tabs';
 
 const Profile = () => {
-	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 	const [mode, setMode] = useState('posts');
 	const [posts, setPosts] = useState([]);
@@ -59,20 +54,8 @@ const Profile = () => {
 				{mode === 'favs' && <YourFav />}
 				{mode === 'profile' && <YourProfile />}
 			</div>
-
-			<ContainerCloseSesion>
-				<p>¿Deseas cerrar sesión {currentUser.email}?</p>
-
-				<ButtonClose onClick={() => handleSignOut(navigate)}>
-					cerrar sesión
-				</ButtonClose>
-			</ContainerCloseSesion>
 		</ContainerProfile>
 	);
 };
 
-const handleSignOut = async navigate => {
-	await signOut(auth);
-	navigate('/');
-};
 export default Profile;
