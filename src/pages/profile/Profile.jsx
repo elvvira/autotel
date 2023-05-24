@@ -30,6 +30,8 @@ const Profile = () => {
 
 	if (!currentUser) return <h1>Loading...</h1>;
 
+	console.log(currentUser);
+
 	return (
 		<ContainerProfile>
 			<ContainerNav>

@@ -19,7 +19,7 @@ const ButtonClose = styled.button`
 	color: black;
 	border: transparent;
 `;
-const ContianerYourProfile = styled.div`
+const ContianerYourProfile = styled.form`
 	display: grid;
 	grid-template-columns: 30% 60%;
 	gap: 3rem;
@@ -30,7 +30,7 @@ const ContainerLeftProfile = styled.div`
 	flex-direction: column;
 	gap: 1rem;
 `;
-const StyledFormProfile = styled.form`
+const StyledFormProfile = styled.div`
 	text-align: left;
 	display: flex;
 	flex-direction: column;
@@ -62,6 +62,25 @@ const StyledInputProfile = styled.input`
 	border-radius: 2rem;
 	border: 1px solid gray;
 `;
+const LabelPhotoUser = styled.label`
+	border-radius: 2rem;
+
+	border: 1px solid black;
+	width: 85%;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const InputPhotoUser = styled.input`
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+`;
 export {
 	ContainerCloseSesion,
 	ButtonClose,
@@ -71,5 +90,7 @@ export {
 	ContainerInputProfile,
 	ButtonPatch,
 	StyledInputProfile,
-	ContainerPhotoProfile
+	ContainerPhotoProfile,
+	InputPhotoUser,
+	LabelPhotoUser
 };

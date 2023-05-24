@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Auth.context';
 import {
@@ -10,23 +10,32 @@ import {
 	ContainerLeftProfile,
 	ContainerPhotoProfile,
 	ContianerYourProfile,
+	InputPhotoUser,
+	LabelPhotoUser,
 	StyledFormProfile,
 	StyledInputProfile
 } from './styles';
-import { auth } from '../../config/firebase.config';
+import { auth, storage } from '../../config/firebase.config';
+import { v4 } from 'uuid';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const YourProfile = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
-
+	const [userPhoto, setUserPhoto] = useState();
 	return (
 		<div>
 			<ContianerYourProfile>
 				<ContainerLeftProfile>
 					<h2>Anfitrión ...</h2>
-
-					<ContainerPhotoProfile src='' alt='' />
-					<button>Subir una foto</button>
+					<InputPhotoUser
+						type='file'
+						id='myUserFile'
+						multiple
+						onChange={e => handleLoadFile(e.target.files[0], setUserPhoto)}
+					/>
+					<ContainerPhotoProfile src={userPhoto} alt='' />
+					<LabelPhotoUser htmlFor='myUserFile'>Subir una foto</LabelPhotoUser>
 				</ContainerLeftProfile>
 				<StyledFormProfile>
 					<h3>Actualizar usuario</h3>
@@ -39,7 +48,7 @@ const YourProfile = () => {
 						<StyledInputProfile type='text' />
 					</ContainerInputProfile>
 					<ContainerInputProfile>
-						<label htmlFor=''>Inforamción sobre mi</label>
+						<label htmlFor=''>Información sobre mi</label>
 						<StyledInputProfile type='text' />
 					</ContainerInputProfile>
 					<ButtonPatch>Actualizar usuario</ButtonPatch>
@@ -58,5 +67,25 @@ const YourProfile = () => {
 const handleSignOut = async navigate => {
 	await signOut(auth);
 	navigate('/');
+};
+
+const handleLoadFile = async (file, setUserPhoto) => {
+	const nameNoExtension = file.name.substring(0, file.name.indexOf('.'));
+	console.log(nameNoExtension);
+	const finalName = `${nameNoExtension}-${v4()}`;
+	const storageRef = ref(storage, finalName);
+	try {
+		const upload = await uploadBytes(storageRef, file);
+		const imageURL = await getDownloadURL(storageRef);
+		console.log(upload);
+		console.log(imageURL);
+		setUserPhoto(imageURL);
+		// setNewPlaceInfo({
+		// 	...newPlaceInfo,
+		// 	img: imageURL
+		// });
+	} catch (err) {
+		console.log(err);
+	}
 };
 export default YourProfile;

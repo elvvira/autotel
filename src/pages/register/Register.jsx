@@ -85,7 +85,7 @@ const onSubmit = async (data, e, navigate) => {
 	};
 	try {
 		const newUser = await createUserWithEmailAndPassword(auth, email, password);
-		await setDoc(doc(db, 'users', newUser.uid), userInfo);
+		await setDoc(doc(db, 'users', newUser.user.uid), userInfo);
 
 		navigate('/');
 	} catch (err) {
