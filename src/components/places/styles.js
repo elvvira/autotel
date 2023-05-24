@@ -12,7 +12,7 @@ const ImagePost = styled.img`
 
 const HeartIcon = styled.img`
 	position: absolute;
-	bottom: 20px;
+	bottom: -25px;
 	right: 20px;
 	width: 25px;
 `;

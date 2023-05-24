@@ -5,6 +5,8 @@ const ContainerLogin = styled.div`
 	width: 60%;
 	margin-right: auto;
 	margin-left: auto;
+	margin-top: 3rem;
+
 	border-radius: 2rem;
 	background-color: ${COLORS.primary};
 	color: white;

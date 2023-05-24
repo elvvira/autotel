@@ -1,5 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { ContainerYourPosts, YourPostImg } from './styles';
+import {
+	ContainerYourPosts,
+	IconEdit,
+	ImageFooter,
+	YourPostImg
+} from './styles';
 import { AuthContext } from '../../contexts/Auth.context';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../config/firebase.config';
@@ -21,10 +26,14 @@ const YourPosts = () => {
 				return (
 					<div key={post.id}>
 						<YourPostImg src={post.img} alt='' />
-						<div>
-							<p>{post.location}</p>
-							<p>{post.price}€/hora</p>
-						</div>
+						<ImageFooter>
+							<div>
+								<p>{post.location}</p>
+								<p>{post.price}€/hora</p>
+							</div>
+
+							<IconEdit src='assets/icon-edit.svg' alt='' />
+						</ImageFooter>
 					</div>
 				);
 			})}

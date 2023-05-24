@@ -14,9 +14,11 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithPopup
 } from 'firebase/auth';
-import { auth } from '../../config/firebase.config';
+import { auth, usersCollectionReference } from '../../config/firebase.config';
 import { useForm } from 'react-hook-form';
 import { FORM_VALIDATIONS } from '../../constants/validations';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../config/firebase.config';
 const Register = () => {
 	const navigate = useNavigate();
 
@@ -65,7 +67,7 @@ const Register = () => {
 			</StyledForm>
 			<StyledBefore>o</StyledBefore>
 
-			<ButtonApps>Continua con Facebook</ButtonApps>
+			{/* <ButtonApps>Continua con Facebook</ButtonApps> */}
 			<ButtonApps onClick={() => loginWithGoogle(navigate)}>
 				Continua con Google
 			</ButtonApps>
@@ -75,8 +77,16 @@ const Register = () => {
 const onSubmit = async (data, e, navigate) => {
 	e.preventDefault();
 	const { email, password } = data;
+	const userInfo = {
+		favorites: [],
+		userDescription: '',
+		userName: '',
+		userPhoto: ''
+	};
 	try {
-		await createUserWithEmailAndPassword(auth, email, password);
+		const newUser = await createUserWithEmailAndPassword(auth, email, password);
+		await setDoc(doc(db, 'users', newUser.uid), userInfo);
+
 		navigate('/');
 	} catch (err) {
 		console.log(err);

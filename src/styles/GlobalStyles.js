@@ -9,11 +9,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-family:"Arial Rounded ", Arial, Helvetica, sans-serif;
     }
-    
-    h2{
-        margin-bottom: 0;
-	    margin-top: 0;
-    }
+
     p{
         margin: 0;
     }

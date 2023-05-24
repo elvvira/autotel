@@ -15,7 +15,7 @@ import { TABS } from '../../constants/tabs';
 
 const Profile = () => {
 	const { currentUser } = useContext(AuthContext);
-	const [mode, setMode] = useState('posts');
+	const [mode, setMode] = useState('profile');
 	const [posts, setPosts] = useState([]);
 	useEffect(() => {
 		const subscribeToData = onSnapshot(blogCollectionReference, snapshot => {

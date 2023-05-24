@@ -3,22 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import { ContainerImgPlaces, HeartIcon, ImagePost } from './styles';
 
 const Places = ({ post }) => {
-	const [fav, setFav] = useState(false);
+	const [favIcon, setFavIcon] = useState(false);
 	const navigate = useNavigate();
 
 	return (
-		<div onClick={() => navigate(`Modal`, { state: post })}>
+		<div>
 			<ContainerImgPlaces>
-				<ImagePost src={post.img} alt='' />
-				{/* <HeartIcon
-					onClick={setFav(true)}
-					src={
-						fav
-							? 'public/assets/heart-regular.svg'
-							: 'public/assets/heart-solid.svg'
-					}
+				<ImagePost
+					onClick={() => navigate(`Modal`, { state: post })}
+					src={post.img}
 					alt=''
-				/> */}
+				/>
+
+				<HeartIcon
+					onClick={() => (favIcon ? setFavIcon(false) : setFavIcon(true))}
+					src={favIcon ? 'assets/heart-solid.svg' : 'assets/heart-regular.svg'}
+					alt=''
+				/>
 			</ContainerImgPlaces>
 			<div>
 				<p>{post.location}</p>

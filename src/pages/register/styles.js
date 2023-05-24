@@ -3,6 +3,7 @@ import { COLORS } from '../../constants/colors';
 
 const ContainerRegister = styled.div`
 	width: 60%;
+	margin-top: 3rem;
 	margin-right: auto;
 	margin-left: auto;
 	border-radius: 2rem;
@@ -13,7 +14,6 @@ const ContainerRegister = styled.div`
 	align-items: center;
 	position: relative;
 	padding: 1rem;
-	padding-top: 2rem;
 	gap: 1rem;
 `;
 const StyledRegisterTitle = styled.h2`

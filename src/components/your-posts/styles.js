@@ -9,5 +9,13 @@ const ContainerYourPosts = styled(ContainerPlaces)`
 const YourPostImg = styled(ImagePost)`
 	border-radius: 2rem;
 `;
-
-export { ContainerYourPosts, YourPostImg };
+const ImageFooter = styled.div`
+	display: flex;
+	text-align: left;
+	justify-content: space-between;
+	padding: 1rem;
+`;
+const IconEdit = styled.img`
+	width: 20px;
+`;
+export { ContainerYourPosts, YourPostImg, ImageFooter, IconEdit };

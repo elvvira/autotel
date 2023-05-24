@@ -14,10 +14,10 @@ const ContainerProfile = styled.div`
 `;
 const ContainerNav = styled.nav`
 	width: 100%;
-	background-color: gray;
+	border: 1px solid gray;
 	padding: 0rem 3rem 0rem 3rem;
 	border-radius: 2rem;
-	color: white;
+	color: gray;
 	font-weight: bold;
 `;
 const ContainerUlProfile = styled.ul`
@@ -28,6 +28,6 @@ const ContainerUlProfile = styled.ul`
 `;
 
 const TitleMode = styled.p`
-	color: ${({ active }) => (active ? 'black' : 'white')};
+	color: ${({ active }) => (active ? 'black' : 'gray')};
 `;
 export { ContainerProfile, ContainerUlProfile, ContainerNav, TitleMode };
