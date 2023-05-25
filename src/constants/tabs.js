@@ -13,7 +13,7 @@ export const TABS = [
 	},
 	{
 		id: v4(),
-		text: 'Perfil',
+		text: 'Editar Perfil',
 		mode: 'profile'
 	}
 ];

@@ -39,7 +39,7 @@ const StyledFormProfile = styled.div`
 const ContainerPhotoProfile = styled.img`
 	background-color: gray;
 	width: 90%;
-
+	object-fit: cover;
 	height: 200px;
 	border-radius: 2rem;
 `;

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContainerImgPlaces, HeartIcon, ImagePost } from './styles';
+import { AuthContext } from '../../contexts/Auth.context';
 
 const Places = ({ post }) => {
 	const [favIcon, setFavIcon] = useState(false);
 	const navigate = useNavigate();
+	const { currentUser } = useContext(AuthContext);
 
 	return (
 		<div>
@@ -28,4 +30,6 @@ const Places = ({ post }) => {
 		</div>
 	);
 };
+
+const SaveFavorites = () => {};
 export default Places;

@@ -7,11 +7,15 @@ import {
 	ModalContainerInfo,
 	ModalImage
 } from './styles';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/Auth.context';
 
 const Modal = () => {
 	const navigate = useNavigate();
+	const { currentUser } = useContext(AuthContext);
 
 	const { state: post } = useLocation();
+	console.log(currentUser);
 	{
 		return (
 			<ModalContainer>
@@ -23,7 +27,7 @@ const Modal = () => {
 					alt=''
 				/>
 
-				<h2>Anfitrión ...</h2>
+				<h2>Anfitrión {currentUser.userName}</h2>
 				<ModalContainerInfo>
 					<div>
 						<div>

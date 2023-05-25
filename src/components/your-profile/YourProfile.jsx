@@ -15,45 +15,66 @@ import {
 	StyledFormProfile,
 	StyledInputProfile
 } from './styles';
-import { auth, storage } from '../../config/firebase.config';
+import {
+	auth,
+	storage,
+	usersCollectionReference
+} from '../../config/firebase.config';
 import { v4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { USER_FORM } from '../../constants/user';
+import { doc, updateDoc } from 'firebase/firestore';
 
 const YourProfile = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
-	const [userPhoto, setUserPhoto] = useState();
+	const [userInfo, setUserInfo] = useState({
+		userPhoto: '',
+		userName: '',
+		userInfo: ''
+	});
 	return (
 		<div>
 			<ContianerYourProfile>
 				<ContainerLeftProfile>
-					<h2>Anfitrión ...</h2>
+					<h2>Anfitrión {userInfo.userName} </h2>
 					<InputPhotoUser
 						type='file'
 						id='myUserFile'
 						multiple
-						onChange={e => handleLoadFile(e.target.files[0], setUserPhoto)}
+						onChange={e =>
+							handleLoadFile(e.target.files[0], userInfo, setUserInfo)
+						}
 					/>
-					<ContainerPhotoProfile src={userPhoto} alt='' />
+					<ContainerPhotoProfile src={userInfo.userPhoto} alt='' />
 					<LabelPhotoUser htmlFor='myUserFile'>Subir una foto</LabelPhotoUser>
 				</ContainerLeftProfile>
 				<StyledFormProfile>
 					<h3>Actualizar usuario</h3>
-					<ContainerInputProfile>
-						<label htmlFor=''>Nombre de usuari@</label>
-						<StyledInputProfile type='text' />
-					</ContainerInputProfile>
-					<ContainerInputProfile>
-						<label htmlFor=''>Cambiar contraseña</label>
-						<StyledInputProfile type='text' />
-					</ContainerInputProfile>
-					<ContainerInputProfile>
-						<label htmlFor=''>Información sobre mi</label>
-						<StyledInputProfile type='text' />
-					</ContainerInputProfile>
-					<ButtonPatch>Actualizar usuario</ButtonPatch>
+					{USER_FORM.map(info => {
+						return (
+							<ContainerInputProfile key={info.id}>
+								<label htmlFor=''>{info.text}</label>
+								<StyledInputProfile
+									type='text'
+									name={info.input}
+									placeholder={info.input}
+									onChange={e =>
+										handleChangeInput(e.target, userInfo, setUserInfo)
+									}
+								/>
+							</ContainerInputProfile>
+						);
+					})}
+
+					<ButtonPatch
+						onClick={e => editUser(e, currentUser.uid, userInfo, navigate)}
+					>
+						Actualizar usuario
+					</ButtonPatch>
 				</StyledFormProfile>
 			</ContianerYourProfile>
+
 			<ContainerCloseSesion>
 				<p>¿Deseas cerrar sesión {currentUser.email}?</p>
 
@@ -64,12 +85,20 @@ const YourProfile = () => {
 		</div>
 	);
 };
+
+const handleChangeInput = (input, userInfo, setUserInfo) => {
+	const { value, name } = input;
+	setUserInfo({
+		...userInfo,
+		[name]: value
+	});
+};
 const handleSignOut = async navigate => {
 	await signOut(auth);
 	navigate('/');
 };
 
-const handleLoadFile = async (file, setUserPhoto) => {
+const handleLoadFile = async (file, userInfo, setUserInfo) => {
 	const nameNoExtension = file.name.substring(0, file.name.indexOf('.'));
 	console.log(nameNoExtension);
 	const finalName = `${nameNoExtension}-${v4()}`;
@@ -77,13 +106,23 @@ const handleLoadFile = async (file, setUserPhoto) => {
 	try {
 		const upload = await uploadBytes(storageRef, file);
 		const imageURL = await getDownloadURL(storageRef);
-		console.log(upload);
-		console.log(imageURL);
-		setUserPhoto(imageURL);
-		// setNewPlaceInfo({
-		// 	...newPlaceInfo,
-		// 	img: imageURL
-		// });
+
+		setUserInfo({
+			...userInfo,
+			userPhoto: imageURL
+		});
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+const editUser = async (e, id, userInfo, navigate) => {
+	e.preventDefault();
+
+	try {
+		const postToUpdate = doc(usersCollectionReference, id);
+		await updateDoc(postToUpdate, userInfo);
+		navigate('/');
 	} catch (err) {
 		console.log(err);
 	}
