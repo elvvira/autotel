@@ -1,12 +1,20 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContainerImgPlaces, HeartIcon, ImagePost } from './styles';
 import { AuthContext } from '../../contexts/Auth.context';
+import { doc, updateDoc } from 'firebase/firestore';
+import { usersCollectionReference } from '../../config/firebase.config';
 
 const Places = ({ post }) => {
-	const [favIcon, setFavIcon] = useState(false);
-	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
+	const navigate = useNavigate();
+	const [favIcon, setFavIcon] = useState(false);
+
+	if (!currentUser) return <h1>Loading...</h1>;
+
+	const isFavorite = currentUser.favorites.includes(post.id);
+
+	console.log(currentUser);
 
 	return (
 		<div>
@@ -18,8 +26,13 @@ const Places = ({ post }) => {
 				/>
 
 				<HeartIcon
-					onClick={() => (favIcon ? setFavIcon(false) : setFavIcon(true))}
-					src={favIcon ? 'assets/heart-solid.svg' : 'assets/heart-regular.svg'}
+					onClick={e => {
+						saveFavorites(currentUser, post.id);
+						setFavIcon(!favIcon);
+					}}
+					src={
+						isFavorite ? 'assets/heart-solid.svg' : 'assets/heart-regular.svg'
+					}
 					alt=''
 				/>
 			</ContainerImgPlaces>
@@ -31,5 +44,20 @@ const Places = ({ post }) => {
 	);
 };
 
-const SaveFavorites = () => {};
+const saveFavorites = async (currentUser, placeId, setFavIcon) => {
+	const postToUpdate = doc(usersCollectionReference, currentUser.uid);
+	const favorites = currentUser.favorites;
+	if (favorites.includes(placeId)) {
+		const placeIndex = favorites.indexOf(placeId);
+		favorites.splice(placeIndex, 1);
+	} else {
+		favorites.push(placeId);
+	}
+	console.log(favorites);
+	const newData = {
+		favorites: favorites
+	};
+	await updateDoc(postToUpdate, newData);
+};
+
 export default Places;

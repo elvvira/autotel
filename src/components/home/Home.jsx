@@ -18,7 +18,6 @@ const Home = () => {
 		});
 		return () => subscribeToData();
 	}, []);
-	// console.log(posts);
 
 	return (
 		<ContainerHome>

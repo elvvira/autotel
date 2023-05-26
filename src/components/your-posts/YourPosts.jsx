@@ -32,7 +32,7 @@ const YourPosts = () => {
 								<p>{post.price}€/hora</p>
 							</div>
 
-							<IconEdit src='assets/icon-edit.svg' alt='' />
+							{/* <IconEdit src='assets/icon-edit.svg' alt='' /> */}
 						</ImageFooter>
 					</div>
 				);
