@@ -1,6 +1,12 @@
 import styled from 'styled-components';
-import { COLORS } from '../../constants/colors';
+import 'react-calendar/dist/Calendar.css';
 
+import { COLORS } from '../../constants/colors';
+import Calendar from 'react-calendar';
+const ContainerCalendarSearch = styled.div`
+	width: 100%;
+	position: relative;
+`;
 const ContainerSearch = styled.form`
 	width: 100%;
 	height: 60px;
@@ -27,11 +33,32 @@ const StyledSearch = styled.div`
 		top: -6px;
 	}
 `;
-
+const StyledDay = styled.div`
+	color: gray;
+	font-size: 0.9rem;
+	margin-right: 5rem;
+	cursor: pointer;
+`;
 const StyledInput = styled.input`
 	border: transparent;
 `;
 const ImgSearch = styled.img`
 	width: 20px;
 `;
-export { ContainerSearch, ImgSearch, StyledSearch, StyledInput };
+const CalendarReact = styled(Calendar)`
+	margin-bottom: 2rem;
+	border-radius: 2rem;
+	padding: 2rem;
+	position: absolute;
+	left: 30%;
+	z-index: 10;
+`;
+export {
+	ContainerCalendarSearch,
+	ContainerSearch,
+	ImgSearch,
+	StyledSearch,
+	StyledInput,
+	StyledDay,
+	CalendarReact
+};

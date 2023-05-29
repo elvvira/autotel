@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContainerImgPlaces, HeartIcon, ImagePost } from './styles';
 import { AuthContext } from '../../contexts/Auth.context';
@@ -12,9 +12,7 @@ const Places = ({ post }) => {
 
 	if (!currentUser) return <h1>Loading...</h1>;
 
-	const isFavorite = currentUser.favorites.includes(post.id);
-
-	console.log(currentUser);
+	const isFavorite = currentUser?.favorites.includes(post.id);
 
 	return (
 		<div>
@@ -44,7 +42,7 @@ const Places = ({ post }) => {
 	);
 };
 
-const saveFavorites = async (currentUser, placeId, setFavIcon) => {
+const saveFavorites = async (currentUser, placeId) => {
 	const postToUpdate = doc(usersCollectionReference, currentUser.uid);
 	const favorites = currentUser.favorites;
 	if (favorites.includes(placeId)) {

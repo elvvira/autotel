@@ -1,25 +1,24 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/Auth.context';
-import {
-	collection,
-	doc,
-	getDoc,
-	getDocs,
-	query,
-	where
-} from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
-import { db } from '../../config/firebase.config';
+// import { db } from '../../config/firebase.config';
 import {
 	ContainerYourPosts,
 	ImageFooter,
 	YourPostImg
 } from '../your-posts/styles';
-import { blogCollectionReference } from '../../config/firebase.config';
+import {
+	blogCollectionReference,
+	usersCollectionReference
+} from '../../config/firebase.config';
+import { DeleteFav } from './styles';
 
 const YourFav = () => {
 	const [posts, setPosts] = useState([]);
 	const { currentUser } = useContext(AuthContext);
+	const [favIcon, setFavIcon] = useState(false);
+	if (!currentUser.favorites) return <h1>Loading...</h1>;
 
 	useEffect(() => {
 		if (!currentUser) return;
@@ -37,6 +36,14 @@ const YourFav = () => {
 								<p>{post.location}</p>
 								<p>{post.price}€/hora</p>
 							</div>
+							<DeleteFav
+								onClick={() => {
+									DeleteFavorites(currentUser, post.id);
+									setFavIcon(!favIcon);
+								}}
+							>
+								quitar
+							</DeleteFav>
 						</ImageFooter>
 					</div>
 				);
@@ -59,4 +66,19 @@ const getUserPosts = async (currentUser, setPosts) => {
 	setPosts(documents);
 };
 
+const DeleteFavorites = async (currentUser, placeId) => {
+	const postToUpdate = doc(usersCollectionReference, currentUser.uid);
+	const favorites = currentUser.favorites;
+	if (favorites.includes(placeId)) {
+		const placeIndex = favorites.indexOf(placeId);
+		favorites.splice(placeIndex, 1);
+	} else {
+		favorites.push(placeId);
+	}
+	console.log(favorites);
+	const newData = {
+		favorites: favorites
+	};
+	await updateDoc(postToUpdate, newData);
+};
 export default YourFav;

@@ -21,11 +21,7 @@ const Header = () => {
 			<ContainerMenu>
 				{showInfoUser && <MenuUser setShowInfoUser={setShowInfoUser} />}
 
-				<ContainerUser
-					onClick={() =>
-						showInfoUser ? setShowInfoUser(false) : setShowInfoUser(true)
-					}
-				>
+				<ContainerUser onClick={() => setShowInfoUser(!showInfoUser)}>
 					<ImgUser
 						src={showInfoUser ? 'assets/close.png' : 'assets/menu.png'}
 						alt=''

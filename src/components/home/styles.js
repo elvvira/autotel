@@ -9,7 +9,7 @@ const ContainerHome = styled.div`
 const ContainerPlaces = styled.div`
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-direction: row;
 	gap: 1rem;
 	flex-wrap: wrap;

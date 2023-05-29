@@ -33,6 +33,7 @@ const YourProfile = () => {
 		userName: '',
 		userInfo: ''
 	});
+	console.log(currentUser.userPhoto);
 	return (
 		<div>
 			<ContianerYourProfile>
@@ -46,7 +47,12 @@ const YourProfile = () => {
 							handleLoadFile(e.target.files[0], userInfo, setUserInfo)
 						}
 					/>
-					<ContainerPhotoProfile src={userInfo.userPhoto} alt='' />
+					<ContainerPhotoProfile
+						src={
+							currentUser.userPhoto ? currentUser.userPhoto : userInfo.userPhoto
+						}
+						alt=''
+					/>
 					<LabelPhotoUser htmlFor='myUserFile'>Subir una foto</LabelPhotoUser>
 				</ContainerLeftProfile>
 				<StyledFormProfile>
@@ -100,7 +106,7 @@ const handleSignOut = async navigate => {
 
 const handleLoadFile = async (file, userInfo, setUserInfo) => {
 	const nameNoExtension = file.name.substring(0, file.name.indexOf('.'));
-	console.log(nameNoExtension);
+	// console.log(nameNoExtension);
 	const finalName = `${nameNoExtension}-${v4()}`;
 	const storageRef = ref(storage, finalName);
 	try {
