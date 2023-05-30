@@ -12,7 +12,7 @@ const Places = ({ post }) => {
 
 	if (!currentUser) return <h1>Loading...</h1>;
 
-	const isFavorite = currentUser?.favorites.includes(post.id);
+	const isFavorite = currentUser?.favorites?.includes(post.id);
 
 	return (
 		<div>

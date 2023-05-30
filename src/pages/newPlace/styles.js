@@ -10,7 +10,7 @@ const ContainerNewPlace = styled.div`
 `;
 const FormInformation = styled.form`
 	display: grid;
-	grid-template-columns: repeat(2, 55% 40%);
+	grid-template-columns: 55% 40%;
 	grid-template-rows: 300px 400px 200px;
 `;
 const StylesInputFile = styled.input`
