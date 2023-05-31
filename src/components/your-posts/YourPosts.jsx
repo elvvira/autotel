@@ -56,19 +56,21 @@ const YourPosts = () => {
 					</div>
 				);
 			})}
-			<ModalTrash showTrash={showTrash}>
-				<p>¿Seguro que quieres borrar?</p>
-				<div>
-					<StyledButtonTrash
-						onClick={() => deletePost(postId, setShowTrash, navigate)}
-					>
-						si
-					</StyledButtonTrash>
-					<StyledButtonTrashNo onClick={() => setShowTrash(false)}>
-						no
-					</StyledButtonTrashNo>
-				</div>
-			</ModalTrash>
+			{showTrash && (
+				<ModalTrash>
+					<p>¿Seguro que quieres borrar?</p>
+					<div>
+						<StyledButtonTrash
+							onClick={() => deletePost(postId, setShowTrash, navigate)}
+						>
+							si
+						</StyledButtonTrash>
+						<StyledButtonTrashNo onClick={() => setShowTrash(false)}>
+							no
+						</StyledButtonTrashNo>
+					</div>
+				</ModalTrash>
+			)}
 		</ContainerYourPosts>
 	);
 };

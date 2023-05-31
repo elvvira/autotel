@@ -74,7 +74,7 @@ const ContainerInput = styled.div`
 	margin-bottom: 1rem;
 `;
 const StyledInputPlace = styled.input`
-	width: 380px;
+	width: 90%;
 	height: 40px;
 	padding-left: 1rem;
 	border-radius: 2rem;
@@ -84,12 +84,14 @@ const StyledInputPlace = styled.input`
 	}
 `;
 const InputInfoPlace = styled(StyledInputPlace)`
-	width: 320px;
+	width: 90%;
+
 	height: 310px;
 `;
 
 const InputInfoDuo = styled(StyledInputPlace)`
-	width: 250px;
+	width: 70%;
+
 	margin-right: 1rem;
 `;
 const StyledSelect = styled.select`
@@ -103,8 +105,8 @@ const StyledSelect = styled.select`
 	}
 `;
 const ButtonPlace = styled.button`
-	width: 250px;
-	height: 40px;
+	width: 60%;
+	height: 50px;
 	border-radius: 2rem;
 	grid-column: 1/3;
 	grid-row: 3/3;

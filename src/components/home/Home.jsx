@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Places from '../places/Places';
 import Search from '../search/Search';
 import { ContainerHome, ContainerPlaces } from './styles';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
 import { blogCollectionReference } from '../../config/firebase.config';
 import Banner from '../banner/Banner';
 

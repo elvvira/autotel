@@ -33,7 +33,6 @@ const ModalTrash = styled.div`
 	color: white;
 	font-weight: bold;
 	background-color: ${COLORS.primary};
-	display: ${({ showTrash }) => (showTrash ? 'block' : 'none')};
 `;
 const StyledButtonTrash = styled.button`
 	width: 70px;

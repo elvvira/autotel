@@ -10,29 +10,28 @@ const Places = ({ post }) => {
 	const navigate = useNavigate();
 	const [favIcon, setFavIcon] = useState(false);
 
-	if (!currentUser) return <h1>Loading...</h1>;
-
 	const isFavorite = currentUser?.favorites?.includes(post.id);
 
 	return (
 		<div>
 			<ContainerImgPlaces>
 				<ImagePost
-					onClick={() => navigate(`Modal`, { state: post })}
+					onClick={() => navigate('Modal', { state: post })}
 					src={post.img}
 					alt=''
 				/>
-
-				<HeartIcon
-					onClick={e => {
-						saveFavorites(currentUser, post.id);
-						setFavIcon(!favIcon);
-					}}
-					src={
-						isFavorite ? 'assets/heart-solid.svg' : 'assets/heart-regular.svg'
-					}
-					alt=''
-				/>
+				{currentUser && (
+					<HeartIcon
+						onClick={() => {
+							saveFavorites(currentUser, post.id);
+							setFavIcon(!favIcon);
+						}}
+						src={
+							isFavorite ? 'assets/heart-solid.svg' : 'assets/heart-regular.svg'
+						}
+						alt=''
+					/>
+				)}
 			</ContainerImgPlaces>
 			<div>
 				<p>{post.location}</p>
@@ -45,6 +44,7 @@ const Places = ({ post }) => {
 const saveFavorites = async (currentUser, placeId) => {
 	const postToUpdate = doc(usersCollectionReference, currentUser.uid);
 	const favorites = currentUser.favorites;
+	console.log('FAVOURITES', favorites);
 	if (favorites.includes(placeId)) {
 		const placeIndex = favorites.indexOf(placeId);
 		favorites.splice(placeIndex, 1);
