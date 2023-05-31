@@ -18,7 +18,7 @@ const YourFav = () => {
 	const [posts, setPosts] = useState([]);
 	const { currentUser } = useContext(AuthContext);
 	const [favIcon, setFavIcon] = useState(false);
-	if (!currentUser.favorites) return <h1>Loading...</h1>;
+	if (!currentUser.favorites) return <h3>Aún no tienes favoritos...</h3>;
 
 	useEffect(() => {
 		if (!currentUser) return;

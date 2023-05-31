@@ -18,7 +18,7 @@ const Search = () => {
 					<StyledInput type='text' placeholder='lugar' />
 				</StyledSearch>
 				<StyledSearch>
-					<StyledDay onClick={() => setShowCalendar(!showCalendar)} on>
+					<StyledDay onClick={() => setShowCalendar(!showCalendar)}>
 						day
 					</StyledDay>
 				</StyledSearch>

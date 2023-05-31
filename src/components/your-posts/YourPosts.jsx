@@ -47,7 +47,7 @@ const YourPosts = () => {
 
 							<IconEdit
 								onClick={() => {
-									!setShowTrash(true), setPostId(post.id);
+									setShowTrash(!showTrash), setPostId(post.id);
 								}}
 								src='assets/trash.svg'
 								alt=''
