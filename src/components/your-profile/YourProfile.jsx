@@ -42,6 +42,7 @@ const YourProfile = () => {
 					<InputPhotoUser
 						type='file'
 						id='myUserFile'
+						name='UserPhoto'
 						multiple
 						onChange={e =>
 							handleLoadFile(e.target.files[0], userInfo, setUserInfo)
@@ -105,6 +106,7 @@ const handleSignOut = async navigate => {
 };
 
 const handleLoadFile = async (file, userInfo, setUserInfo) => {
+	console.log(file);
 	const nameNoExtension = file.name.substring(0, file.name.indexOf('.'));
 	// console.log(nameNoExtension);
 	const finalName = `${nameNoExtension}-${v4()}`;

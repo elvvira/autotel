@@ -9,7 +9,9 @@ const Banner = () => {
 					confianza
 				</h1>
 				<p>
-					Encuentra tu plaza de garaje ideal <br /> y alquila con confianza
+					Tu espacio protegido, <br />
+					tu vehículo seguro <br />
+					alquila tu plaza de garaje
 				</p>
 			</div>
 
